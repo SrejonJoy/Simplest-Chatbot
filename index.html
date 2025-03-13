@@ -1,23 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Speech to Text Chatbot</title>
-    <!-- For production, replace with local Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- jQuery is required for the Bangla Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <!-- jQuery Bangla Library -->
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.bangla/1.3.0/jquery.bangla.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.bangla/1.3.0/jquery.bangla.min.js"></script>
-    
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Speech to Text Chatbot</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.bangla/1.3.0/jquery.bangla.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery.bangla@1.3.2/dist/jquery.bangla.min.js"></script>
+    </head>
 <body class="h-screen overflow-hidden bg-transparent">
     <div class="flex flex-col h-full">
         <!-- Chat Window -->
@@ -58,6 +51,7 @@
         </div>
 
     <script>
+ 
         // DOM elements
         const chatWindow = document.getElementById('chat-window');
         const userInput = document.getElementById('user-input');
@@ -67,6 +61,13 @@
         const toggleBanglaBtn = document.getElementById('toggle-bangla');
         const statusMessage = document.getElementById('status-message');
         
+        document.addEventListener('DOMContentLoaded', () => {
+        if (typeof $.fn.bangla !== 'function') {
+            console.error('jQuery Bangla plugin is not loaded!');
+        } else {
+            console.log('jQuery Bangla plugin loaded successfully.');
+        }
+    });
         // State tracking
         let banglaInputMode = false;
         let isRecognizing = false;
@@ -386,7 +387,7 @@
                 showStatus("Your browser does not support speech recognition.", true);
             }
         });
-
+        
         // Fallback method for Bangla input (manual typing with conversion)
         toggleBanglaBtn.addEventListener('click', () => {
             banglaInputMode = !banglaInputMode;
