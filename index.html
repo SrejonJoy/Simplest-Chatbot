@@ -219,7 +219,7 @@
             ).join("\n") + "\nAssistant:";
 
             return new Promise((resolve, reject) => {
-                fetch('https://api-inference.huggingface.co/models/google/gemma-2-9b-it', {
+                fetch('https://api-inference.huggingface.co/models/google/gemma-2-9b', {
                     method: 'POST',
                     headers: {
                         'Authorization': `Bearer ${HUGGING_FACE_API_KEY}`,
